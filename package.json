@@ -1,0 +1,48 @@
+{
+	"name": "@carekind/shared",
+	"version": "0.1.0",
+	"private": true,
+	"description": "CareKind AI shared contract: zod schemas, business rules, API client, design tokens",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./tokens.css": "./src/styles/tokens.css"
+	},
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist",
+		"src/styles/tokens.css"
+	],
+	"sideEffects": [
+		"*.css"
+	],
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"lint": "eslint . && prettier --check .",
+		"format": "prettier --write .",
+		"test": "vitest run",
+		"tokens": "tsx scripts/build-tokens.ts"
+	},
+	"dependencies": {
+		"zod": "^4.6.7"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@types/node": "^26.6.5",
+		"eslint": "^10.13.0",
+		"prettier": "^3.9.10",
+		"tsx": "^4.23.15",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.72.0",
+		"vitest": "^5.0.5",
+		"yaml": "^2.9.1"
+	}
+}
