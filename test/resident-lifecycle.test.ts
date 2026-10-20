@@ -29,6 +29,8 @@ describe('nextResidentStatus (SPEC-011 §3.1)', () => {
 		['pre_admission', 'admit', 'in_residence'],
 		['in_residence', 'temporary_leave', 'temporary_leave'],
 		['temporary_leave', 'return', 'in_residence'],
+		['temporary_leave', 'depart', 'departed'],
+		['temporary_leave', 'death', 'deceased'],
 		['in_residence', 'transfer_out', 'transferring'],
 		['transferring', 'transfer_accept', 'in_residence'],
 		['in_residence', 'depart', 'departed'],

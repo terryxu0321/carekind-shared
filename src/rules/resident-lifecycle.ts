@@ -9,7 +9,8 @@ export function isAttributionCandidate(status: ResidentStatus): boolean {
 	return status === 'in_residence';
 }
 
-// Exactly the transitions drawn in SPEC-011 §3.1; anything else is rejected (fail safe).
+// The transitions drawn in SPEC-011 §3.1, plus depart/death from temporary_leave;
+// anything else is rejected (fail safe).
 export const RESIDENT_TRANSITIONS: Readonly<
 	Record<ResidentStatus, Partial<Record<ResidentEventType, ResidentStatus>>>
 > = {
@@ -20,7 +21,8 @@ export const RESIDENT_TRANSITIONS: Readonly<
 		depart: 'departed',
 		death: 'deceased',
 	},
-	temporary_leave: { return: 'in_residence' },
+	// A resident on leave can die in hospital or never return (M0 follow-up, 2026-10-20).
+	temporary_leave: { return: 'in_residence', depart: 'departed', death: 'deceased' },
 	transferring: { transfer_accept: 'in_residence' },
 	departed: { archive: 'archived' },
 	deceased: { archive: 'archived' },
